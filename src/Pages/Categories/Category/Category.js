@@ -1,13 +1,13 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import LeftsideNav from '../Shared/LeftsideNav/LeftsideNav';
+import LeftsideNav from '../../Shared/LeftsideNav/LeftsideNav';
 
-const Courses = () => {
+const Category = () => {
     return (
         <Container>
             <Row>
                 <Col lg='7'>
-                    <h2>Courses display here</h2>
+                    <h2>Single Category</h2>
                 </Col>
                 <Col lg='5'>
                     <LeftsideNav></LeftsideNav>
@@ -17,4 +17,4 @@ const Courses = () => {
     );
 };
 
-export default Courses;
+export default Category;
