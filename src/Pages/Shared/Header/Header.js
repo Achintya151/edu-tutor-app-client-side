@@ -16,6 +16,7 @@ const Header = () => {
             username
         </Tooltip>
     );
+    const user = '';
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='mb-4'>
             <Container>
@@ -41,17 +42,25 @@ const Header = () => {
                         </Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link>
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltip}
-                            >
-                                <Button variant="light">
-                                    <FaUser></FaUser>
-                                </Button>
-                            </OverlayTrigger>
-                        </Nav.Link>
+                        <>
+                            {
+                                user ?
+                                    <OverlayTrigger
+                                        placement="bottom"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <Button variant="light">
+                                            <FaUser></FaUser>
+                                        </Button>
+                                    </OverlayTrigger>
+                                    :
+                                    <>
+                                        <Nav.Link as={NavLink} to='/login'>Login</Nav.Link>
+                                        <Nav.Link as={NavLink} to='/register'>Register</Nav.Link>
+                                    </>
+                            }
+                        </>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

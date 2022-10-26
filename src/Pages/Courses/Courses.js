@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLoaderData } from 'react-router-dom';
-import Category from '../Categories/Category/Category';
 import CourseSummeryCard from '../Shared/CourseSummeryCard/CourseSummeryCard';
 import LeftsideNav from '../Shared/LeftsideNav/LeftsideNav';
 
