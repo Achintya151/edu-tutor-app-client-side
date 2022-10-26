@@ -9,7 +9,7 @@ const Category = () => {
     return (
         <Container>
             <Row>
-                <Col lg='7'>
+                <Col lg='9'>
                     <Row>
                         {
                             courses.map(course => <CourseSummeryCard
@@ -19,7 +19,7 @@ const Category = () => {
                         }
                     </Row>
                 </Col>
-                <Col lg='5'>
+                <Col lg='3'>
                     <LeftsideNav></LeftsideNav>
                 </Col>
             </Row>

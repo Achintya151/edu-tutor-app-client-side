@@ -2,10 +2,11 @@ import React from 'react';
 import { Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 
 const CourseSummeryCard = ({ course }) => {
-    const { _id, category_id, category_name, title, details, thumbnail_url } = course
+    const { _id, category_name, title, details, thumbnail_url } = course
     return (
         <Col lg='4' className='mb-4 d-flex align-items-stretch'>
             <Card>
@@ -23,7 +24,7 @@ const CourseSummeryCard = ({ course }) => {
                                 details
                         }
                     </Card.Text>
-                    <Button className='mt-auto' variant="outline-success">Details</Button>
+                    <Button as={Link} to={`/course/${_id}`} className='mt-auto' variant="outline-success">Details</Button>
                 </Card.Body>
             </Card>
         </Col>

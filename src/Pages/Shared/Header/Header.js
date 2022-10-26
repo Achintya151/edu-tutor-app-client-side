@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { FaMoon, FaUser } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 const Header = () => {
@@ -17,7 +17,7 @@ const Header = () => {
         </Tooltip>
     );
     return (
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+        <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='mb-4'>
             <Container>
                 <Navbar.Brand className='d-flex justify-content-between align-items-center' as={Link} to='/'>
                     <div className='pe-2'>
@@ -31,30 +31,26 @@ const Header = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="ms-auto">
-                        <Nav.Link as={Link} to='/courses'>Courses</Nav.Link>
-                        <Nav.Link as={Link} to='/faq'>FAQ</Nav.Link>
-                        <Nav.Link as={Link} to='/blogs'>Blogs</Nav.Link>
-                        <Nav.Link as={Link} to='/'>
+                    <Nav className="ms-auto" variant="tabs" defaultActiveKey="/home">
+                        <Nav.Link as={NavLink} to='/courses'>Courses</Nav.Link>
+                        <Nav.Link as={NavLink} to='/faq'>FAQ</Nav.Link>
+                        <Nav.Link as={NavLink} to='/blogs'>Blogs</Nav.Link>
+                        <Nav.Link as={NavLink} to='/home'>
                             <span className='pe-2'>Dark Mode</span>
                             <FaMoon></FaMoon>
                         </Nav.Link>
                     </Nav>
                     <Nav>
-                        <OverlayTrigger
-                            placement="bottom"
-                            delay={{ show: 250, hide: 400 }}
-                            overlay={renderTooltip}
-                        >
-                            <Button variant="light">
-                                <FaUser></FaUser>
-                            </Button>
-                        </OverlayTrigger>
-                        <Nav.Link href="#deets">
-
-                        </Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
+                        <Nav.Link>
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltip}
+                            >
+                                <Button variant="light">
+                                    <FaUser></FaUser>
+                                </Button>
+                            </OverlayTrigger>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

@@ -12,9 +12,10 @@ const LeftsideNav = () => {
             .then(data => setCategories(data))
     }, [])
     return (
-        <aside className='w-50 ms-auto'>
+        <aside className=' ms-auto'>
             <div>
-                <h4>Courses: {categories.length}</h4>
+                <h4>Courses</h4>
+                <hr />
             </div>
             <ul className='list-group'>
                 {

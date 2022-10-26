@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLoaderData } from 'react-router-dom';
 import Category from '../Categories/Category/Category';
+import CourseSummeryCard from '../Shared/CourseSummeryCard/CourseSummeryCard';
 import LeftsideNav from '../Shared/LeftsideNav/LeftsideNav';
 
 const Courses = () => {
@@ -9,10 +10,17 @@ const Courses = () => {
     return (
         <Container>
             <Row>
-                <Col lg='7'>
-                    <h2>courses:{courses.length}</h2>
+                <Col lg='9'>
+                    <Row>
+                        {
+                            courses.map(course => <CourseSummeryCard
+                                key={course._id}
+                                course={course}
+                            ></CourseSummeryCard>)
+                        }
+                    </Row>
                 </Col>
-                <Col lg='5'>
+                <Col lg='3'>
                     <LeftsideNav></LeftsideNav>
                 </Col>
             </Row>
