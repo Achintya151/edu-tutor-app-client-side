@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 
 
 const CourseSummeryCard = ({ course }) => {
-    const { _id, category_name, title, details, thumbnail_url } = course
+    const { _id, category_name, title, details, thumbnail_url } = course;
+
     return (
         <Col lg='4' className='mb-4 d-flex align-items-stretch'>
             <Card>
