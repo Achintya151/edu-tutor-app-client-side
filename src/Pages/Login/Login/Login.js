@@ -1,19 +1,24 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 
 
 const Login = () => {
+
+    const [error, setError] = useState('');
     const { providerLogin, signIn } = useContext(AuthContext);
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -38,9 +43,13 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                navigate('/')
+                setError('');
+                navigate(from, { replace: true });
             })
-            .catch(e => console.error(e))
+            .catch(e => {
+                console.error(e);
+                setError(e.message);
+            })
     }
 
     return (
@@ -57,7 +66,9 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control name='password' type="password" placeholder="Password" required />
-                    <Form.Text className='text-danger'></Form.Text>
+                    <Form.Text className='text-danger'>
+                        {error}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <span>New to EduTutor? Please <Link to='/register'>register</Link></span>

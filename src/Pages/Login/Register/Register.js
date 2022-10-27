@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -8,7 +8,9 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
+
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -17,14 +19,28 @@ const Register = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photoURL, email, password);
 
         createUser(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
                 form.reset();
+                handleUpdateUser(name, photoURL);
             })
+            .catch(e => {
+                console.error(e);
+                setError(e.message);
+            })
+    }
+
+    const handleUpdateUser = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
             .catch(e => console.error(e))
     }
 
@@ -50,7 +66,9 @@ const Register = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control name='password' type="password" placeholder="Password" required />
-                    <Form.Text className='text-danger'></Form.Text>
+                    <Form.Text className='text-danger'>
+                        {error}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <span>Already have an account? Please <Link to='/login'>login</Link></span>

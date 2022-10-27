@@ -4,11 +4,13 @@ import Main from "../../Layouts/Main";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Category from "../../Pages/Categories/Category/Category";
 import Course from "../../Pages/Categories/Course/Course";
+import CheckOutPage from "../../Pages/CheckOutPage/CheckOutPage";
 import Courses from "../../Pages/Courses/Courses";
 import FAQ from "../../Pages/FAQ/FAQ";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Register from "../../Pages/Login/Register/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -53,6 +55,11 @@ export const routes = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>
+            },
+            {
+                path: '/checkout/:id',
+                element: <PrivateRoute><CheckOutPage></CheckOutPage></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
             }
         ]
     },

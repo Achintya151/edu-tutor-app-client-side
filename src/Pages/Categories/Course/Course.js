@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import LeftsideNav from '../../Shared/LeftsideNav/LeftsideNav';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -29,7 +29,7 @@ const Course = () => {
                             <Card.Text>
                                 {course.details}
                             </Card.Text>
-                            <Button variant="success">Get Premium Access</Button>
+                            <Button as={Link} to={`/checkout/${course._id}`} variant="success">Get Premium Access</Button>
                         </Card.Body>
                     </Card>
                 </Col>
