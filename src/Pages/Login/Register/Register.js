@@ -1,38 +1,62 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+
+    const { createUser } = useContext(AuthContext);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, photoURL, email, password);
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+            })
+            .catch(e => console.error(e))
+    }
+
     return (
         <Container>
-            <Form className='w-50 mx-auto'>
+            <Form onSubmit={handleSubmit} className='w-50 mx-auto'>
                 <div className='text-center text-success'>
-                    <h2>Login Now</h2>
+                    <h2>Register Now !</h2>
                 </div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Full Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your name" />
+                    <Form.Control name='name' type="text" placeholder="Enter your name" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Photo URL</Form.Label>
-                    <Form.Control type="text" placeholder="Enter photo URL" />
+                    <Form.Control name='photoURL' type="text" placeholder="Enter photo URL" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control name='email' type="email" placeholder="Enter email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control name='password' type="password" placeholder="Password" required />
+                    <Form.Text className='text-danger'></Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <span>Already have an account? Please <Link to='/login'>login</Link></span>
                 </Form.Group>
                 <Button variant="success" type="submit">
-                    Submit
+                    Register
                 </Button>
             </Form>
         </Container>

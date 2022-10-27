@@ -13,7 +13,13 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(e => console.error(e))
+    }
 
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
@@ -40,29 +46,26 @@ const Header = () => {
                         <Nav.Link as={NavLink} to='/courses'>Courses</Nav.Link>
                         <Nav.Link as={NavLink} to='/faq'>FAQ</Nav.Link>
                         <Nav.Link as={NavLink} to='/blogs'>Blogs</Nav.Link>
-                        <Nav.Link as={NavLink} to='/home'>
-                            <span className='pe-2'>Dark Mode</span>
-                            <FaMoon></FaMoon>
-                        </Nav.Link>
-                    </Nav>
-                    <Nav>
                         <>
                             {
                                 user ?
-                                    <OverlayTrigger
-                                        placement="bottom"
-                                        delay={{ show: 250, hide: 400 }}
-                                        overlay={renderTooltip}
-                                    >
-                                        <Button variant="light">
-                                            {
-                                                user?.photoURL ?
-                                                    <Image style={{ height: '20px' }} roundedCircle src={user.photoURL}></Image>
-                                                    :
-                                                    <FaUser></FaUser>
-                                            }
-                                        </Button>
-                                    </OverlayTrigger>
+                                    <>
+                                        <OverlayTrigger
+                                            placement="bottom"
+                                            delay={{ show: 250, hide: 400 }}
+                                            overlay={renderTooltip}
+                                        >
+                                            <Button variant="light">
+                                                {
+                                                    user?.photoURL ?
+                                                        <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image>
+                                                        :
+                                                        <FaUser></FaUser>
+                                                }
+                                            </Button>
+                                        </OverlayTrigger>
+                                        <Button onClick={handleLogOut} variant='dark'>Log Out</Button>
+                                    </>
                                     :
                                     <>
                                         <Nav.Link as={NavLink} to='/login'>Login</Nav.Link>
@@ -70,6 +73,12 @@ const Header = () => {
                                     </>
                             }
                         </>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link as={NavLink} to='/home'>
+                            <span className='pe-2'>Dark Mode</span>
+                            <FaMoon></FaMoon>
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
