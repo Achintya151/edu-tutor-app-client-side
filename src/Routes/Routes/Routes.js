@@ -36,17 +36,17 @@ export const routes = createBrowserRouter([
             {
                 path: '/courses',
                 element: <Courses></Courses>,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch('https://edututor-app-server.vercel.app/courses')
             },
             {
                 path: 'category/:id',
                 element: <Category></Category>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://edututor-app-server.vercel.app/category/${params.id}`)
             },
             {
                 path: '/course/:id',
                 element: <Course></Course>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({ params }) => fetch(`https://edututor-app-server.vercel.app/courses/${params.id}`)
             },
             {
                 path: '/faq',
@@ -59,7 +59,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/checkout/:id',
                 element: <PrivateRoute><CheckOutPage></CheckOutPage></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({ params }) => fetch(`https://edututor-app-server.vercel.app/courses/${params.id}`)
             }
         ]
     },

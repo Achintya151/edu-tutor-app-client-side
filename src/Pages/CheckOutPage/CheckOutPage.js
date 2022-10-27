@@ -38,7 +38,6 @@ const CheckOutPage = () => {
                             </Toast>
                         </Col>
                     </Row>
-
                 </Card.ImgOverlay>
             </Card>
         </Container>

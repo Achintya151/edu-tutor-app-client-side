@@ -9,7 +9,7 @@ const CourseSummeryCard = ({ course }) => {
     const { _id, category_name, title, details, thumbnail_url } = course;
 
     return (
-        <Col lg='4' className='mb-4 d-flex align-items-stretch'>
+        <Col lg='4' sm='6' className='mb-4 d-flex align-items-stretch'>
             <Card>
                 <Card.Img style={{ height: '150px' }} variant="top" src={thumbnail_url} />
                 <Card.Body className='text-start d-flex flex-column'>
