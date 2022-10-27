@@ -8,15 +8,19 @@ import { FaMoon, FaUser } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
+
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
-            username
+            {user?.displayName}
         </Tooltip>
     );
-    const user = '';
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='mb-4'>
             <Container>
@@ -51,7 +55,12 @@ const Header = () => {
                                         overlay={renderTooltip}
                                     >
                                         <Button variant="light">
-                                            <FaUser></FaUser>
+                                            {
+                                                user?.photoURL ?
+                                                    <Image style={{ height: '20px' }} roundedCircle src={user.photoURL}></Image>
+                                                    :
+                                                    <FaUser></FaUser>
+                                            }
                                         </Button>
                                     </OverlayTrigger>
                                     :

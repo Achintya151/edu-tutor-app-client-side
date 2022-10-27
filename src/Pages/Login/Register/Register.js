@@ -35,15 +35,6 @@ const Register = () => {
                     Submit
                 </Button>
             </Form>
-            <br />
-            <hr className='w-50 mx-auto' />
-            <br />
-            <div className='text-center'>
-                <Button variant='light'>Google</Button>
-                <br />
-                <p>or</p>
-                <Button variant='dark'>GitHub</Button>
-            </div>
         </Container>
     );
 };
